@@ -1,0 +1,31 @@
+<resources>
+    <string name="permdesc_flashlight">FlashLight permissions</string>
+    <string name="permlab_flashlight">We need flashlight permissions to turn on your flash</string>
+
+    <string name="app_name">FlashLight</string>
+    <string name="action_custom_mode">Custom mode</string>
+    <string name="action_help">Help</string>
+    <string name="action_about">About</string>
+
+    <string name="title_activity_screen_light">ScreenLight</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="help_advice">Continued use may reduce battery life</string>
+    <string name="help_flash_light">Use to turn on/off the flash</string>
+    <string name="help_screen_light">Use to turn on/off the screen light</string>
+
+    <string name="dev_by">Application developed by</string>
+    <string name="dev_name">Xavier Lopez Reynau</string>
+    <string name="web_name">Webpage</string>
+    <string name="gmail_name">GMail</string>
+    <string name="git_name">GitHub</string>
+    <string name="gmail">xavi.lopez.reynau@gmail.com</string>
+    <string name="webpage">www.lopezreynau.com</string>
+    <string name="github">github.com/Reynau</string>
+
+    <!--> ICONS <-->
+    <string name="web_icon">&#xf108;</string>
+    <string name="github_icon">&#xf09b;</string>
+    <string name="gmail_icon">&#xf0e0;</string>
+</resources>
