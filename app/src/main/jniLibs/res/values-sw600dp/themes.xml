@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="myosdk__ScanActivityTheme" parent="myosdk__PopupActivityTheme" />
+
+</resources>

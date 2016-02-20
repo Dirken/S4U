@@ -26,7 +26,7 @@ dependencies {
 
     repositories {
         maven {
-            url 'C:\\myo-android-sdk-0.10.0/myorepository'
+            url 'C:\\myo-android-sdk-0.10.0\\myorepository'
         }
     }
 
