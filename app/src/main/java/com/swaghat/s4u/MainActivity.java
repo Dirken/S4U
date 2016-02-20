@@ -1,7 +1,6 @@
 package com.swaghat.s4u;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,18 +12,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import java.util.Locale;
-import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton talkButton;
     private ImageButton callButton;
 
-    Queue stringBuffer;
-    boolean isTalking;
-
     String text;
     EditText et;
+    TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +44,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         et=(EditText)findViewById(R.id.editText);
+        tts=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS){
+                    int result=tts.setLanguage(Locale.UK);
+                    if(result==TextToSpeech.LANG_MISSING_DATA ||
+                            result==TextToSpeech.LANG_NOT_SUPPORTED){
+                        Log.e("error", "This Language is not supported");
+                    }
+                    else tts.speak("", TextToSpeech.QUEUE_FLUSH, null);
+                }
+                else
+                    Log.e("error", "Initilization Failed!");
+            }
+        });
     }
 
     @Override
@@ -72,62 +83,34 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void startTalking() {
-        ConvertTextToSpeech();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tts=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS){
+                    int result=tts.setLanguage(Locale.US);
+                    if(result==TextToSpeech.LANG_MISSING_DATA ||
+                            result==TextToSpeech.LANG_NOT_SUPPORTED){
+                        Log.e("error", "This Language is not supported");
+                    }
+                    else tts.speak("", TextToSpeech.QUEUE_FLUSH, null);
+                }
+                else
+                    Log.e("error", "Initilization Failed!");
+            }
+        });
     }
 
     private void makeCall() {
 
     }
-    private void ConvertTextToSpeech() {
+    private void startTalking() {
         // TODO Auto-generated method stub
         text = et.getText().toString();
-        Log.w("E", text);
-
-    }
-
-    private class readTextThread extends AsyncTask<Void,Void,Void> {
-        Queue buffer;
-
-        TextToSpeech tts;
-
-        protected void onPreExecute() {
-            buffer = stringBuffer;
-            tts=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
-                @Override
-                public void onInit(int status) {
-                    // TODO Auto-generated method stub
-                    if(status == TextToSpeech.SUCCESS){
-                        int result=tts.setLanguage(Locale.US);
-                        if(result==TextToSpeech.LANG_MISSING_DATA ||
-                                result==TextToSpeech.LANG_NOT_SUPPORTED){
-                            Log.e("error", "This Language is not supported");
-                        }
-                        else  ConvertTextToSpeech();
-                    }
-                    else
-                        Log.e("error", "Initilization Failed!");
-                }
-            });
-            isTalking = true;
-        }
-
-        protected Void doInBackground(Void... urls) {
-            while(!buffer.isEmpty()) {
-                String word = (String) buffer.remove();
-                talk(word);
-            }
-            return null;
-        }
-
-        protected void onPostExecute() {
-            isTalking = false;
-        }
-
-        private void talk(String text) {
-            if(! (text==null||"".equals(text)))
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        if(!(text==null||"".equals(text)))
+            tts.speak(text, TextToSpeech.QUEUE_ADD, null);
     }
 }
 
