@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/FlashLight - copia.iml" filepath="$PROJECT_DIR$/FlashLight - copia.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/S4U.iml" filepath="$PROJECT_DIR$/S4U.iml" />
+>>>>>>> a3964e351e7ce76d6be01208200a8db36984d244
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
