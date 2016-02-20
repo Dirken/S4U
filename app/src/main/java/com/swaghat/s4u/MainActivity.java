@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.thalmic.myo.Hub;
+
 import java.util.Locale;
 import java.util.Queue;
 
@@ -48,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         et=(EditText)findViewById(R.id.editText);
+
+        Hub hub =  Hub.getInstance();
+        if (!hub.init(this)) {
+            Log.e("Error: ", "Could not initialize the Hub.");
+            finish();
+            return;
+        }
     }
 
     @Override
