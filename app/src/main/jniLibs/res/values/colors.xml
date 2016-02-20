@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="myosdk__thalmic_blue">#00BCDD</color>
+    <color name="myosdk__indicator_green">#24C75A</color>
+    <color name="myosdk__button_red">#AE0922</color>
+    <color name="myosdk__button_orange">#FF8000</color>
+</resources>
